@@ -1,0 +1,131 @@
+/* Import Google Font */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #E7ECF3; /* Light grayish-blue background */
+    color: #333;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Dashboard Container */
+.dashboard-container {
+    display: flex;
+    height: 100vh;
+    width: 100%;
+}
+
+/* Main Content */
+.main-content {
+    margin-left: 220px;
+    flex-grow: 1;
+    padding: 20px;
+    overflow-y: auto;
+}
+
+/* Header */
+header {
+    background: #111927; /* Dark navy */
+    color: white;
+    padding: 12px;
+    text-align: center;
+    font-size: 15px;
+    font-weight: 500;
+    width: 100%;
+}
+
+/* Summary Section */
+.summary-section {
+    display: flex;
+    gap: 20px;
+    margin-top: 20px;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.summary-card {
+    flex: 1;
+    min-width: 250px;
+    background: #ffffff; /* White card */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    text-align: center;
+    transition: all 0.3s ease-in-out;
+    color: #111927; /* Dark text */
+}
+
+.summary-card:hover {
+    transform: translateY(-3px);
+}
+
+/* Charts Section */
+.charts-section {
+    display: flex;
+    gap: 20px;
+    margin-top: 20px;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.chart-card {
+    flex: 1;
+    min-width: 300px;
+    background: #ffffff; /* White */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+/* Transactions Section */
+.transactions-section {
+    margin-top: 20px;
+    background: #ffffff; /* White */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+.transactions-section ul {
+    list-style: none;
+    padding: 0;
+}
+
+.transactions-section ul li {
+    padding: 12px;
+    border-bottom: 1px solid #ddd;
+}
+
+.transactions-section ul li:last-child {
+    border-bottom: none;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .summary-section, .charts-section {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .summary-card, .chart-card {
+        width: 90%;
+    }
+}
+
+@media (max-width: 768px) {
+    .main-content {
+        padding: 10px;
+    }
+
+    .summary-card, .chart-card, .transactions-section {
+        width: 100%;
+    }
+}

@@ -1,0 +1,105 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: linear-gradient(to right, #6a11cb, #2575fc);
+}
+
+.auth-container {
+    width: 380px;
+    background: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+h2 {
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.auth-form input {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    transition: 0.3s ease-in-out;
+    font-size: 16px;
+}
+
+.auth-form input:focus {
+    border-color: #6a11cb;
+    outline: none;
+}
+
+.show-password {
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    font-size: 14px;
+    color: #555;
+    margin-bottom: 15px;
+}
+
+.show-password input {
+    margin-right: 8px;
+    cursor: pointer;
+}
+
+.auth-form button {
+    width: 100%;
+    padding: 12px;
+    background: #6a11cb;
+    color: #fff;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s ease-in-out;
+}
+
+.auth-form button:hover {
+    background: #2575fc;
+}
+
+.auth-links {
+    margin-top: 15px;
+}
+
+.auth-links a {
+    color: #6a11cb;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.auth-links a:hover {
+    text-decoration: underline;
+}
+
+.error-message {
+    color: red;
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

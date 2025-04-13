@@ -1,0 +1,53 @@
+<%- include('sidebar') %>
+<link rel="stylesheet" href="/styles.css">
+<link rel="stylesheet" href="/css/reports.css">
+
+<div class="container">
+    <h1>Financial Reports</h1>
+
+    <!-- Last Month and Ongoing Month Budget Summary -->
+    <div class="report-section">
+        <h2>Budget Summary</h2>
+        <p><strong>Last Month Budget:</strong> <span id="lastMonthBudget"></span></p>
+        <p><strong>Ongoing Month Budget:</strong> <span id="ongoingMonthBudget"></span></p>
+    </div>
+
+    <!-- Category Wise Budget -->
+    <div class="report-section">
+        <h2>Budget by Category</h2>
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>Category</th>
+                    <th>Last Month</th>
+                    <th>Ongoing Month</th>
+                </tr>
+            </thead>
+            <tbody id="categoryBudgetTable">
+                <!-- for Data to be inserted dynamically -->
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Income & Expenses -->
+    <div class="report-section">
+        <h2>Income & Expenses</h2>
+        <p><strong>Last Month Income:</strong> <span id="lastMonthIncome">Loading...</span></p>
+        <p><strong>Ongoing Month Income:</strong> <span id="ongoingMonthIncome">Loading...</span></p>
+        <p><strong>Last Month Expenses:</strong> <span id="lastMonthExpenses">Loading...</span></p>
+        <p><strong>Ongoing Month Expenses:</strong> <span id="ongoingMonthExpenses">Loading...</span></p>
+    </div>
+
+    <!-- Investment Summary -->
+    <div class="report-section">
+        <h2>Investment Summary</h2>
+        <p><strong>Last Month Investment:</strong> <span id="lastMonthInvestment">Loading...</span></p>
+        <p><strong>Ongoing Month Investment:</strong> <span id="ongoingMonthInvestment">Loading...</span></p>
+        <p><strong>Last Month Profit:</strong> <span id="lastMonthProfit">Loading...</span></p>
+        <p><strong>Ongoing Month Profit:</strong> <span id="ongoingMonthProfit">Loading...</span></p>
+        <p><strong>Last Month Loss:</strong> <span id="lastMonthLoss">Loading...</span></p>
+        <p><strong>Ongoing Month Loss:</strong> <span id="ongoingMonthLoss">Loading...</span></p>
+    </div>
+</div>
+
+<script src="/js/reports.js"></script>

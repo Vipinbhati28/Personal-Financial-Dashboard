@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analytics</title>
+    <link rel="stylesheet" href="/styles.css">
+    <script src="https://kit.fontawesome.com/8cd04f9e3d.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="container">
+        <%- include('sidebar') %>
+
+        <!-- Analytics Content -->
+        <main class="dashboard">
+            <h1>Analytics Overview</h1>
+            <div class="analytics-filters">
+                <button class="filter-btn" data-range="7">Last 7 Days</button>
+                <button class="filter-btn active" data-range="30">Last 30 Days</button>
+                <button class="filter-btn" data-range="90">Last 90 Days</button>
+                <button class="filter-btn" id="customRange">Custom Range</button>
+            
+                <input type="date" id="startDate" style="display: none;">
+                <input type="date" id="endDate" style="display: none;">
+                <button class="applybtn" id="applyFilter" style="display: none;">Apply</button>
+            </div>
+            
+            <div id="chart-container">
+                <canvas id="analyticsChart"></canvas>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            fetch('/api/analytics') 
+                .then(response => response.json())
+                .then(data => {
+                    const dateLabels = data.dates;
+                    const earningsData = data.earnings;
+                    const spendingData = data.spending;
+
+                    const ctx = document.getElementById('analyticsChart').getContext('2d');
+                    new Chart(ctx, {
+                        type: 'line',
+                        data: {
+                            labels: dateLabels,
+                            datasets: [
+                                {
+                                    label: "Earnings",
+                                    data: earningsData,
+                                    borderColor: "green",
+                                    fill: false,
+                                    tension: 0.3
+                                },
+                                {
+                                    label: "Spending",
+                                    data: spendingData,
+                                    borderColor: "red",
+                                    fill: false,
+                                    tension: 0.3
+                                }
+                            ]
+                        },
+                        options: {
+                            responsive: true,
+                            plugins: {
+                                legend: {
+                                    position: 'top',
+                                }
+                            },
+                            scales: {
+                                x: {
+                                    title: {
+                                        display: true,
+                                        text: 'Date'
+                                    },
+                                    ticks: {
+                                        autoSkip: true,
+                                        maxTicksLimit: 10
+                                    }
+                                },
+                                y: {
+                                    title: {
+                                        display: true,
+                                        text: 'Amount (₹)'
+                                    },
+                                    beginAtZero: true
+                                }
+                            }
+                        }
+                    });
+                })
+                .catch(error => console.error("Error fetching analytics data:", error));
+        });
+    </script>
+
+    <script src="/js/analytics.js"></script>
+</body>
+</html>

@@ -1,0 +1,85 @@
+<%- include('sidebar') %>
+<link rel="stylesheet" href="/styles.css">
+<link rel="stylesheet" href="/css/budget.css">
+
+<div class="container">
+    <h2>Budget Management</h2>
+
+    <!-- Budget Form -->
+    <form class="form" id="budgetForm" action="#" method="post">
+        <label for="category">Category:</label>
+        <input type="text" id="category" name="category" required>
+
+        <label for="limit">Budget Limit (₹):</label>
+        <input type="number" id="limit" name="limit" required>
+
+        <button type="submit">Set Budget</button>
+    </form>
+
+    <h3>Your Budget</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Category</th>
+                <th>Limit (₹)</th>
+                <th>Spent (₹)</th>
+                <th>Progress</th>
+            </tr>
+        </thead>
+        <tbody id="budgetList"></tbody>
+    </table>
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    fetchBudget();
+
+    document.getElementById("budgetForm").addEventListener("submit", function (event) {
+        event.preventDefault();
+        const category = document.getElementById("category").value;
+        const limit = document.getElementById("limit").value;
+
+        fetch("/api/budget/set", {  // Ensure the correct endpoint
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+                category,
+                limit,
+                month: new Date().getMonth() + 1,
+                year: new Date().getFullYear()
+            })
+        })
+        .then(response => response.json())
+        .then(data => {
+            alert(data.message);
+            document.getElementById("budgetForm").reset();  // Clear form after submission
+            fetchBudget();
+        })
+        .catch(error => console.error("Error setting budget:", error));
+    });
+
+    function fetchBudget() {
+        fetch("/api/budget")  // Ensure the correct endpoint
+        .then(response => response.json())
+        .then(budgets => {
+            const budgetList = document.getElementById("budgetList");
+            budgetList.innerHTML = "";
+
+            budgets.forEach(budget => {
+                const progressColor = budget.spent > budget.limit ? "red" : "green"; // Change color if exceeded
+
+                budgetList.innerHTML += `
+                    <tr>
+                        <td>${budget.category}</td>
+                        <td>${budget.limit}</td>
+                        <td>${budget.spent}</td>
+                        <td>
+                            <progress value="${budget.spent}" max="${budget.limit}" style="color: ${progressColor};"></progress>
+                        </td>
+                    </tr>`;
+            });
+        })
+        .catch(error => console.error("Error fetching budget:", error));
+    }
+});
+</script>

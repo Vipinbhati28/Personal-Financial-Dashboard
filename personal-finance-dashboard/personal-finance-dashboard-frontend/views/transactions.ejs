@@ -1,0 +1,79 @@
+<%- include('sidebar') %>
+<link rel="stylesheet" href="/styles.css">
+<link rel="stylesheet" href="/css/transactions.css">
+
+<div class="transactions-container">
+    <h2>Manage Transactions</h2>
+
+    <form id="transaction-form">
+        <label for="type">Transaction Type:</label>
+        <select id="type" name="type" required>
+            <option value="" disabled selected>Select Type</option>
+            <option value="income">Income</option>
+            <option value="expense">Expense</option>
+            <option value="investment">Investment</option>
+        </select>
+
+        <label for="category">Category:</label>
+        <select id="category" name="category" required>
+            <option value="" disabled selected>Select a category</option>
+        </select>
+
+        <label for="amount">Amount:</label>
+        <input type="number" id="amount" name="amount" required>
+
+        <label for="date">Date:</label>
+        <input type="date" id="date" name="date" required>
+
+        <button type="submit" class="submit-btn">Add Transaction</button>
+    </form>
+
+    <h3>Transaction History</h3>
+    <table class="transactions-table">
+        <thead>
+            <tr>
+                <th>Type</th>
+                <th>Category</th>
+                <th>Amount</th>
+                <th>Date</th>
+            </tr>
+        </thead>
+        <tbody id="transaction-list">
+            <!-- Transactions will be dynamically added here -->
+        </tbody>
+    </table>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const typeSelect = document.getElementById("type");
+        const categorySelect = document.getElementById("category");
+
+        // Define categories for each transaction type
+        const categories = {
+            income: ["Salary", "Freelance", "Business", "Other"],
+            expense: ["Food", "Transport", "Entertainment", "Bills", "Shopping"],
+            investment: ["Stocks", "Crypto", "Real Estate", "Mutual Funds"]
+        };
+
+        // Function to update category dropdown
+        function updateCategoryOptions() {
+            const selectedType = typeSelect.value;
+            categorySelect.innerHTML = '<option value="" disabled selected>Select a category</option>';
+
+            if (categories[selectedType]) {
+                categories[selectedType].forEach(category => {
+                    const option = document.createElement("option");
+                    option.value = category.toLowerCase();
+                    option.textContent = category;
+                    categorySelect.appendChild(option);
+                });
+            }
+        }
+
+        // Listen for transaction type selection change
+        typeSelect.addEventListener("change", updateCategoryOptions);
+    });
+</script>
+
+<script src="/js/transactions.js"></script>

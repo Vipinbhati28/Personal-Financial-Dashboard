@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fin Tracr</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+    <header>
+        <h1>Financial Tracker</h1>
+        <%- include('sidebar') %>
+        <nav>
+            <a href="/home">Home</a>
+            <a href="/transactions">Transactions</a>
+            <a href="/budget">Budget</a>
+            <a href="/analytics">Analytics</a>
+            <a href="/reports">Reports</a>
+            <button id="logoutButton">Logout</button>
+        </nav>
+    </header>
+
+    <main>
+        <%- body %>
+    </main>
+
+    <footer>
+        <p>&copy; <%= new Date().getFullYear() %> Financial Tracker</p>
+    </footer>
+
+    <script src="/frontend.js"></script>
+    <script src="/transactions.js"></script>
+    <script src="/budget.js"></script>
+    <script src="/reports.js"></script>
+    <script src="/auth.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const logoutButton = document.getElementById("logoutButton");
+            if (logoutButton) {
+                logoutButton.addEventListener("click", async () => {
+                    try {
+                        const token = document.cookie.replace(/(?:(?:^|.*;\s*)token\s*\=\s*([^;]*).*$)|^.*$/, "$1");
+                        const response = await fetch("/logout", {
+                            method: "GET",
+                            headers: {
+                                "Authorization": `Bearer ${token}`
+                            }
+                        });
+                        if(response.ok){
+                            window.location.href = "/login";
+                        } else {
+                            alert("Logout failed");
+                        }
+                    } catch (error) {
+                        alert("Logout failed.");
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>

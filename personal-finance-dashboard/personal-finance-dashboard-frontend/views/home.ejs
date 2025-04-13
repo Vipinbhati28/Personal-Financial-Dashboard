@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Finance Dashboard</title>
+    <link rel="stylesheet" href="/styles.css">
+    <link rel="stylesheet" href="/css/home.css">
+    <script src="https://kit.fontawesome.com/8cd04f9e3d.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <%- include("sidebar") %>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <header>
+                <h1>Dashboard Overview</h1>
+            </header>
+
+            <!-- Summary Section -->
+            <section class="summary-section">
+                <div class="summary-card">
+                    <p><strong>Total Profit:</strong> <span id="totalProfit"></span></p>
+                </div>
+                <div class="summary-card">
+                    <p><strong>Total Loss:</strong> <span id="totalLoss"></span></p>
+                </div>
+                <div class="summary-card">
+                    <p><strong>Total Budget Allocated:</strong> <span id="totalBudget"></span></p>
+                </div>
+                <div class="summary-card">
+                    <p><strong>Spending Percentage:</strong> <span id="spendingPercentage"></span>%</p>
+                </div>
+            </section>
+
+            <!-- Charts Section -->
+            <section class="charts-section">
+                <div class="chart-card">
+                    <h3>Budget Allocation</h3>
+                    <ul id="pieChartList">
+                        <li></li>
+                    </ul>
+                </div>
+                <div class="chart-card">
+                    <h3>Income vs. Expense</h3>
+                    <p><strong>Income:</strong> <span id="incomeValue"></span></p>
+                    <p><strong>Expenses:</strong> <span id="expenseValue"></span></p>
+                </div>
+            </section>
+
+            <!-- Recent Transactions Section -->
+            <section class="transactions-section">
+                <h3>Recent Transactions</h3>
+                <ul id="transactionsList">
+                    <li></li>
+                </ul>
+            </section>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="/js/home.js"></script>
+</body>
+</html>

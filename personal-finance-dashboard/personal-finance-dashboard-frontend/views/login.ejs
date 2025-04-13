@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="/css/auth.css">
+</head>
+<body>
+    <div class="auth-container">
+        <h2>Login</h2>
+        <form id="authForm" data-type="login" action="/login" class="auth-form">
+            <input type="email" id="email" name="email" autocomplete="email" placeholder="Enter your email" required />
+            <input type="password" id="password" name="password" autocomplete="current-password" placeholder="Enter your password" required />
+            <div class="show-password">
+                <input type="checkbox" id="togglePassword" />
+                <label for="togglePassword">Show Password</label>
+            </div>
+            <button type="submit">Login</button>
+        </form>        
+        <p class="auth-links">Don't have an account? <a href="/signup">Signup here</a></p>
+    </div>
+    <script src="/js/auth.js"></script>
+</body>
+</html>
